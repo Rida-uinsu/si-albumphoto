@@ -1,0 +1,123 @@
+.utama {
+	width: 1020px;
+	height: 1500px;
+	margin: auto;
+	border: 2px solid chocolate;
+	border-height: 1;
+	background-color: #F5F5F5;
+
+}
+body {
+	background-color : white;
+
+}
+
+.kepala {
+}
+
+h1{
+	color: #DC143C;
+}
+
+h2{
+	color: #DC143C;
+}
+
+.menu  {
+	padding: 18px;
+	background-color:#F08080;
+	color: #fff;
+	text-decoration: none;
+}
+
+.menu a {
+	padding: 10px;
+	background-color: #F08080;
+	color: white;
+	text-decoration: none;
+}
+.menu a:hover {
+	background-color: #FFB6C1 ;
+	bottom: 10px;
+}
+
+
+.menu {
+	margin-top: -5px;
+	margin-bottom: 20px;
+	position: relative;
+
+}
+
+.login{
+	position: absolute;
+	top: 0px;
+
+	right: 80px;
+
+}
+.logout{
+	position: absolute;
+	top: 0px;
+	right: 10px;
+
+}
+
+.isi{
+	margin-top: 10px;
+}
+
+table {
+	margin-top: 10px;
+	margin-left: 60px;
+	margin-right: 30px;
+	margin-bottom: 10px;
+	border: 1px solid #F08080;
+	border-collapse: collapse;
+	width: 900px;
+	position: center;
+
+}
+table th {
+	text-align: left;
+	width: 300px;
+	border: 2px solid chocolate;
+	padding: 10px;
+	background-color: #F08080;
+	color: #ffffff;
+}
+table td {
+	border: 2px solid chocolate;
+	background-color: #FFF8DC;
+	padding:10px;
+}
+.footer {
+	padding: 20px;
+	text-align: right;
+	background-color:#F08080;
+	width: 982px;
+	bottom: 0px;
+	margin-left : -1px;
+	margin-right : -20px;
+	color: white;
+	position : fixed;
+}
+ 
+ 
+ input[type=submit] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #F08080;
+  border: 2px solid silver;
+  color: white;
+}
+
+input[type=text] {
+  padding: 1px 2px;
+  width: 500px;
+  height: 25px;
+  box-sizing: border-box;
+  background-color: white;
+  color: black;
+}
