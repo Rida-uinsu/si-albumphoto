@@ -1,41 +1,43 @@
-<?php
- require_once "app/photo.php";
- require_once "app/album.php";
- $id = $_GET['id'];
- $cmb = new App\tphotos;
- $kat = new App\talbum;
- $row1 = $kat->pilihdata($id);
- $dat1 = $cmb->tampil();
- $dat2 = $cmb->pilihdata($row1['photos_id']);
- if (isset($_POST['tsimpan'])){
-   $kat->edit($id,$_POST['phid'], $_POST['name'], $_POST['keterangan']);
-   header("Location: index.php?halaman=album.php"); }
- if (isset($_POST['thapus'])) {
-   $kat->hapus($id);
-   header("Location: index.php?halaman=album.php"); }
- ?>
-<h2><center>EDIT DATA ALBUM</h2></center>
-<form action="" method ="POST">
+<?php 
+require_once "app/album.php";
+
+$id = $_GET['id'];
+
+$alb = new App\Album();
+$row = $alb->edit($id);
+$lst = $alb->listPhotos();
+
+?>
+
+<h2>EDIT ALBUM</h2>
+
+<form method="POST" action="album_proses.php">
+	<input type="hidden" name="album_id" value="<?php echo $id; ?>">
 	<table>
-      <tr>
-        <th>ID FOTO</th>
-        <td>
-          <select name="phid">
-            <option value="<?php echo $row1['photos_id']; ?>"><?php echo $dat2['title']; ?></option>
-            <?php foreach ($dat1 as $row ) { ?>
-            <option value="<?php echo $row['photos_id']; ?>"><?php echo $row['title']; ?></option>
-            <?php } ?>
-          </select>
-        </td>
-    <tr>
-      <th>NAMA ALBUM</th>
-      <td><input type="text" name="name" value="<?php echo $row1['name']; ?>"></td>
-    </tr>
-     <tr>
-      <th>KETERANGAN</th>
-      <td><input type="text" name="keterangan" value="<?php echo $row1['keterangan']; ?>"></td>
-    </tr>
 		<tr>
-			<th></th>
-			<td><input type="submit" name="tsimpan" value="UBAH">   <input type="submit" name="thapus" value="HAPUS"></td>
-		</tr></table>
+			<th>NAMA</th>
+			<td><input type="text" name="album_name" value="<?php echo $row['album_name']; ?>" required=""></td>
+		</tr>
+		<tr>
+			<th>PHOTO</th>
+			<td>
+				<select name="album_pho_id">
+					<?php foreach ($lst as $ls) { ?>
+					<option value="<?php echo $ls['pho_id']; ?>"<?php echo $row['album_pho_id']==$ls['pho_id'] ? " selected" : ""; ?>><?php echo $ls['pho_tittle']; ?></option>
+					<?php } ?>
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<th>KETERANGAN</th>
+			<td><input type="text" name="album_text" value="<?php echo $row['album_text']; ?>" required=""></td>
+		</tr>
+
+
+		<tr>
+			<td></td>
+			<td><input class="tmbl" type="submit" name="btn-update" value="UPDATE"></td>
+		</tr>
+	</table>
+</form>

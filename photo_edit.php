@@ -1,42 +1,47 @@
-<?php
- require_once "app/post.php";
- require_once "app/photo.php";
- $id = $_GET['id'];
- $cmb = new App\tpost;
- $kat = new App\tphotos;
- $row1 = $kat->pilihdata($id);
- $dat1 = $cmb->tampil();
- $dat2 = $cmb->pilihdata($row1['post_id']);
- if (isset($_POST['tsimpan'])){
-   $kat->edit($id,$_POST['pid'],$_POST['tanggal'], $_POST['title'], $_POST['keterangan']);
-   header("Location: index.php?halaman=photo.php"); }
- if (isset($_POST['thapus'])) {
-   $kat->hapus($id);
-   header("Location: index.php?halaman=photo.php"); }
- ?>
-<h2><center>EDIT DATA FOTO</h2></center>
-<form action="" method ="POST">
+<?php 
+require_once "app/photo.php";
+
+$id = $_GET['id'];
+
+$pho = new App\Photos();
+$row = $pho->edit($id);
+$lst = $pho->listPost();
+
+?>
+
+<h2>EDIT PHOTO</h2>
+
+<form method="POST" action="photo_proses.php">
+	<input type="hidden" name="pho_id" value="<?php echo $id; ?>">
 	<table>
-      <tr>
-        <th>ID POST</th>
-        <td><select name="pid">
-            <option value="<?php echo $row1['post_id']; ?>"><?php echo $dat2['title']; ?></option>
-            <?php foreach ($dat1 as $row ) { ?>
-            <option value="<?php echo $row['post_id']; ?>"><?php echo $row['title']; ?></option>
-            <?php } ?>
-          </select></td>
 		<tr>
 			<th>TANGGAL</th>
-			<td><input type="date" name="tanggal" value="<?php echo $row1['tanggal']; ?>"></td>
+			<td><input type="date" name="pho_date" value="<?php echo $row['pho_date']; ?>" required=""></td>
 		</tr>
-    <tr>
-      <th>JUDUL</th>
-      <td><input type="text" name="title" value="<?php echo $row1['title']; ?>"></td>
-    </tr>
-     <tr>
-      <th>KETERANGAN</th>
-      <td><input type="text" name="keterangan" value="<?php echo $row1['keterangan']; ?>"></td></tr>
 		<tr>
-			<th></th>
-			<td><input type="submit" name="tsimpan" value="UBAH">   <input type="submit" name="thapus" value="HAPUS"></td>
-		</tr></table>
+			<th>POST ID</th>
+			<td>
+				<select name="pho_post_id">
+					<?php foreach ($lst as $ls) { ?>
+					<option value="<?php echo $ls['post_id']; ?>"<?php echo $row['pho_post_id']==$ls['post_id'] ? " selected" : ""; ?>><?php echo $ls['post_tittle']; ?></option>
+					<?php } ?>
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<th>TITTLE</th>
+			<td><input type="text" name="pho_tittle" value="<?php echo $row['pho_tittle']; ?>" required=""></td>
+		</tr>
+
+		<tr>
+			<th>KETERANGN</th>
+			<td><input type="text" name="pho_text" value="<?php echo $row['pho_text']; ?>" required=""></td>
+		</tr>
+
+		<tr>
+			<td></td>
+			<td><input class="tmbl" type="submit" name="btn-update" value="UPDATE"></td>
+		</tr>
+	</table>
+</form>

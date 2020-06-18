@@ -1,40 +1,38 @@
-<?php
-require_once "app/photo.php";
+<?php 
+
 require_once "app/album.php";
-$cmb = new App\tphotos;
-$kat = new App\talbum;
-$dat1 = $cmb->tampil();
 
-if (isset($_POST['tsimpan'])) {
-  $kat->tambah($_POST['phid'],$_POST['name'], $_POST['keterangan'] );
-  header("Location: index.php?halaman=album.php");
-}
-
+$alb = new App\Album();
+$lst = $alb->listPhotos();
 ?>
-<h2><center>INPUT DATA ALBUM</h2></center>
-  <table>
-<form action="" method="POST">
-    <tr>
-      <th>ID FOTO</th>
-      <td>
-        <select name="phid">
-          <?php foreach ($dat1 as $row ) { ?>
-          <option value="<?php echo $row['photos_id']; ?>"><?php echo $row['title']; ?></option>
-          <?php } ?>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <th>NAMA ALBUM</th>
-      <td><input type="text" name="name"></td>
-    </tr>
-    <tr>
-      <th>KETERANGAN</th>
-      <td><input type="text" name="keterangan"></td>
-    </tr>
-    <tr>
-      <th></th>
-      <td><input type="submit" name="tsimpan" value="TAMBAHKAN"></td>
-    </tr>
-  </table>
+
+<h2>TAMBAH ALBUM</h2>
+
+<form method="POST" action="album_proses.php">
+	<table>
+		<tr>
+			<th>NAMA</th>
+			<td><input type="text" name="album_name" required=""></td>
+		</tr>
+		<tr>
+			<th>PHOTO</th>
+			<td>
+				<select name="album_pho_id">
+					<?php foreach ($lst as $ls) { ?>
+					<option value="<?php echo $ls['pho_id']; ?>"><?php echo $ls['pho_tittle']; ?></option>
+					<?php } ?>
+				</select>
+			</td>
+
+		<tr>
+			<th>KETERANGAN</th>
+			<td><input type="text" name="album_text" required=""></td>
+		</tr>
+
+		
+		<tr>
+			<td></td>
+			<td><input type="submit" class="tmbl" name="btn-simpan" value="SIMPAN"></td>
+		</tr>
+	</table>
 </form>

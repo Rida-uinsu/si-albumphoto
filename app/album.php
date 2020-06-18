@@ -1,68 +1,95 @@
-<?php
-namespace App;
-use PDO;
-abstract class Data3 {
-	abstract protected function tampil();
-	abstract protected function tambah(String $a1,$a2,$a3);
-	abstract protected function edit(String $a1,$a2,$a3,$a4);
-	abstract protected function pilihdata(String $a1);
-	abstract protected function hapus(String $a1);
-}
-class talbum extends Data3 {
-	private $db;
+<?php 
 
-	public function __construct()
+namespace App;
+require_once "app/controller.php";
+
+
+class Album extends Controller {
+
+	public function __construct() {
+		parent::__construct();
+	}
+
+	public function tampil()
 	{
-		try {
-				$this->db = new PDO("mysql:host=localhost;dbname=dbweb4", "root", "");
-			} catch (PDOException $e) {
-				die ("Error " . $e->getMessage());
-			}
+		$sql = "SELECT album.*, photos.pho_tittle as PHO
+		FROM album, photos
+		WHERE album.album_pho_id=photos.pho_id ORDER BY album.album_id";
+		$stmt = $this->db->prepare($sql);
+		$stmt->execute();
+
+		$data = [];
+		while ($row = $stmt->fetch()) {
+			$data[] = $row;
 		}
-		public function tampil()
-		{
-			$sql = "SELECT * FROM talbum";
-			$stmt = $this->db->prepare($sql);
-			$stmt->execute();
-			$data = [];
-			while ($rows = $stmt->fetch()) {
-				$data[] = $rows;
-			}
-			return $data;
+
+		return $data;
+	}
+
+
+	public function input() {
+
+		$album_name = $_POST['album_name'];
+		$album_text = $_POST['album_text'];
+		$album_pho_id = $_POST['album_pho_id'];
+
+		$sql = "INSERT INTO album (album_name, album_text, album_pho_id) VALUES (:album_name, :album_text, :album_pho_id)";
+		$stmt = $this->db->prepare($sql);
+		$stmt->bindParam(":album_name", $album_name);
+		$stmt->bindParam(":album_text", $album_text);
+		$stmt->bindParam(":album_pho_id", $album_pho_id);
+		$stmt->execute();
+
+		return false;
+	}
+
+	public function listPhotos()
+	{
+		$sql = "SELECT * FROM photos";
+		$stmt = $this->db->prepare($sql);
+		$stmt->execute();
+
+		$data = [];
+		while ($row = $stmt->fetch()) {
+			$data[] = $row;
 		}
-		public function tambah(String $d1,$d2,$d3){
-			$sql = "INSERT INTO talbum VALUES (NULL, :name, :keterangan, :phid)";
-			$stmt = $this->db->prepare($sql);
-			$stmt -> bindParam(":phid", $d1);
-			$stmt -> bindParam(":name", $d2);
-			$stmt -> bindParam(":keterangan", $d3);
-			$stmt->execute();
-		}
-		public function pilihdata(String $d1)
-		{
-			$sql = "SELECT * FROM talbum WHERE album_id = :id";
-			$stmt = $this->db->prepare($sql);
-			$stmt -> bindParam(":id", $d1);
-			$stmt->execute();
-			$data = $stmt->fetch();
-			return $data;
-		}
-		public function edit(String $d1, $d2, $d3, $d4)
-		{
-			$sql = "UPDATE talbum SET photos_id = :phid, name = :name, keterangan = :keterangan WHERE album_id = :id";
-			$stmt = $this->db->prepare($sql);
-			$stmt -> bindParam(":id", $d1);
-			$stmt -> bindParam(":phid", $d2);
-			$stmt -> bindParam(":name", $d3);
-			$stmt -> bindParam(":keterangan", $d4);
-			$stmt->execute();
-		}
-		public function hapus(string $d1)
-		{
-			$sql = "DELETE FROM talbum WHERE album_id = :id";
-			$stmt = $this->db->prepare($sql);
-			$stmt -> bindParam(":id", $d1);
-			$stmt->execute();
-		}
+
+		return $data;
+	}
+
+	
+	public function edit($id)
+	{
+		$sql = "SELECT * FROM album WHERE album_id=:album_id";
+		$stmt = $this->db->prepare($sql);
+		$stmt->bindParam(":album_id", $id);
+		$stmt->execute();
+
+		$row = $stmt->fetch();
+
+		return $row;
+	}
+
+	public function update()
+	{
+
+		$album_name = $_POST['album_name'];
+		$album_text = $_POST['album_text'];
+		$album_pho_id = $_POST['album_pho_id'];
+		
+		$id = $_POST['album_id'];
+
+		$sql = "UPDATE album SET album_name=:album_name, album_text=:album_text, album_pho_id=:album_pho_id WHERE album_id=:album_id";
+		$stmt = $this->db->prepare($sql);
+		$stmt->bindParam(":album_name", $album_name);
+		$stmt->bindParam(":album_text", $album_text);
+		$stmt->bindParam(":album_pho_id", $album_pho_id);
+
+		$stmt->bindParam(":album_id", $id);
+
+		$stmt->execute();
+
+		return false;
+	}
+
 }
-?>

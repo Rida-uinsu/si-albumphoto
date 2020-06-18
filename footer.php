@@ -1,1 +1,0 @@
-Copyright 2020 &copy; Programmed By Afridayani

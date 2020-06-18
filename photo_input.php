@@ -1,42 +1,67 @@
-<?php
-require_once "app/post.php";
+<?php 
+
 require_once "app/photo.php";
-$cmb = new App\tpost;
-$kat = new App\tphotos;
-$dat1 = $cmb->tampil();
-if (isset($_POST['tsimpan'])) {
-  $kat->tambah($_POST['pid'],$_POST['tanggal'], $_POST['title'], $_POST['keterangan'] );
-  header("Location: index.php?halaman=photo.php");
-}
+
+$pho = new App\Photos();
+$lst = $pho->listPost();
+
+
+
 ?>
-<h2><center>INPUT DATA FOTO</h2></center>
-  <table>
-<form action="" method="POST">
-    <tr>
-      <th>ID POST</th>
-      <td>
-        <select name="pid">
-          <?php foreach ($dat1 as $row ) { ?>
-          <option value="<?php echo $row['post_id']; ?>"><?php echo $row['title']; ?></option>
-          <?php } ?>
-        </select>
-      </td>
+
+<h2>TAMBAH PHOTO</h2>
+
+	<table>
+	<tr>
+	      <th>FOTO</th>
+	      <td>
+	     	 <form method="POST" enctype="multipart/form-data" action="photo_proses.php">
+	        <?php 
+				if (isset($_GET['gambar'])) { ?>
+		          <img src="layout/assets/images/album/<?php echo $_GET['gambar']; ?>" height="100px" width="100px">
+		        <?php } 
+
+		        else { ?>
+		          <input type="file" name="gambar">
+		          <input class="tmbl" type="submit" value="Upload" name="up">
+	        <?php } ?>
+     	 </form>
+	      </td>
     </tr>
-    <tr>
-      <th>TANGGAL</th>
-      <td><input type="date" name="tanggal"></td>
-    </tr>
-    <tr>
-      <th>JUDUL</th>
-      <td><input type="text" name="title"></td>
-    </tr>
-    <tr>
-      <th>KETERANGAN</th>
-      <td><input type="text" name="keterangan"></td>
-    </tr>
-    <tr>
-      <th></th>
-      <td><input type="submit" name="tsimpan" value="TAMBAHKAN"></td>
-    </tr>
-  </table>
+
+
+	<form method="POST" action="photo_proses.php?gambar=<?php echo $_GET['gambar']; ?>">
+
+	<tr>
+		<th>TANGGAL</th>
+		<td><input type="date" name="pho_date" required=""></td>
+	</tr>
+
+	<tr>
+		<th>POST ID</th>
+		<td>
+			<select name="pho_post_id">
+			<?php foreach ($lst as $ls) { ?>
+			<option value="<?php echo $ls['post_id']; ?>"><?php echo $ls['post_tittle']; ?></option>
+			<?php } ?>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<th>JUDUL</th>
+		<td><input type="text" name="pho_tittle" required=""></td>
+	</tr>
+
+	<tr>
+		<th>KETERANGAN</th>
+		<td><input type="text" name="pho_text" required=""></td>
+	</tr>
+
+		
+		<tr>
+			<td></td>
+			<td><input type="submit" class="tmbl" name="btn-simpan" value="SIMPAN"></td>
+		</tr>
+	</table>
 </form>

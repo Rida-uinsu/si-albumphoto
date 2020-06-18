@@ -1,1 +1,0 @@
-<img src="layout/assets/images/rdcantik.jpg">

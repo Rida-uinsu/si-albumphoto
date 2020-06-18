@@ -1,47 +1,48 @@
-<?php
-require_once "app/kategori.php";
-require_once "app/post.php";
-$cmb = new App\tcategory;
-$kat = new App\tpost;
-$dat1 = $cmb->tampil();
+<?php 
 
-if (isset($_POST['tsimpan'])) {
-	$kat->tambah($_POST['cid'],$_POST['tanggal'], $_POST['slug'], $_POST['title'], $_POST['keterangan'] );
-  header("Location: index.php?halaman=post.php");
-}
+require_once "app/post.php";
+
+$pst = new App\Post();
+$lst = $pst->listCategory();
 ?>
-<h2><center>INPUT DATA POST</h2></center>
-	<table>
-    <form action="" method="POST">
+
+<h2>TAMBAH POST</h2>
+
+<form method="POST" action="post_proses.php">
+  <table>
     <tr>
-      <th>ID KATEGORI</th>
+      <th>TANGGAL</th>
+      <td><input type="date" name="post_date" required=""></td>
+    </tr>
+    <tr>
+      <th>KATEGORI</th>
       <td>
-        <select name="cid">
-          <?php foreach ($dat1 as $row ) { ?>
-          <option value="<?php echo $row['cat_id']; ?>"><?php echo $row['name']; ?></option>
+        <select name="post_cat_id">
+          <?php foreach ($lst as $ls) { ?>
+          <option value="<?php echo $ls['cat_id']; ?>"><?php echo $ls['cat_name']; ?></option>
           <?php } ?>
         </select>
       </td>
-    </tr>
+
     <tr>
-			<th>TANGGAL</th>
-			<td><input type="date" name="tanggal"></td>
-		</tr>
-     <tr>
       <th>SLUG</th>
-      <td><input type="text" name="slug"></td>
+      <td><input type="text" name="post_slug" required=""></td>
     </tr>
+
     <tr>
       <th>JUDUL</th>
-      <td><input type="text" name="title"></td>
+      <td><input type="text" name="post_tittle" required=""></td>
     </tr>
+
     <tr>
       <th>KETERANGAN</th>
-      <td><input type="text" name="keterangan"></td>
+      <td><input type="text" name="post_text" required=""></td>
     </tr>
-		<tr>
-			<th></th>
-			<td><input type="submit" name="tsimpan" value="TAMBAHKAN"></td>
-		</tr>
-	</table>
+
+    
+    <tr>
+      <td></td>
+      <td><input type="submit" class="tmbl" name="btn-simpan" value="SIMPAN"></td>
+    </tr>
+  </table>
 </form>

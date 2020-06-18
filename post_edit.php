@@ -1,53 +1,52 @@
-<?php
- require_once "app/kategori.php";
- require_once "app/post.php";
- $id = $_GET['id'];
- $cmb = new App\tcategory;
- $kat = new App\tpost;
- $row1 = $kat->pilihdata($id);
- $dat1 = $cmb->tampil();
- $dat2 = $cmb->pilihdata($row1['cat_id']);
- if (isset($_POST['tsimpan'])){
-   $kat->edit($id,$_POST['cid'],$_POST['tanggal'], $_POST['slug'], $_POST['title'], $_POST['keterangan']);
-   header("Location: index.php?halaman=post.php");
- }
- if (isset($_POST['thapus']))
- {
-   $kat->hapus($id);
-   header("Location: index.php?halaman=post.php");
- }
- ?>
-<h2><center>EDIT DATA POST</h2></center>
-<form action="" method ="POST">
-	<table>
-      <tr>
-        <th>ID KATEGORI</th>
-        <td>
-          <select name="cid">
-            <option value="<?php echo $row1['cat_id']; ?>"><?php echo $dat2['name']; ?></option>
-            <?php foreach ($dat1 as $row ) { ?>
-            <option value="<?php echo $row['cat_id']; ?>"><?php echo $row['name']; ?></option>
-            <?php } ?>
-          </select>
-        </td>
-		<tr>
-			<th>TANGGAL</th>
-			<td><input type="date" name="tanggal" value="<?php echo $row1['tanggal']; ?>"></td>
-		</tr>
+<?php 
+require_once "app/post.php";
+
+$id = $_GET['id'];
+
+$pst = new App\Post();
+$row = $pst->edit($id);
+$lst = $pst->listCategory();
+
+?>
+
+<h2>EDIT POST</h2>
+
+<form method="POST" action="post_proses.php">
+  <input type="hidden" name="post_id" value="<?php echo $id; ?>">
+  <table>
+    <tr>
+      <th>TANGGAL</th>
+      <td><input type="date" name="post_date" value="<?php echo $row['post_date']; ?>" required=""></td>
+    </tr>
+    <tr>
+      <th>KATEGORI</th>
+      <td>
+        <select name="post_cat_id">
+          <?php foreach ($lst as $ls) { ?>
+          <option value="<?php echo $ls['cat_id']; ?>"<?php echo $row['post_cat_id']==$ls['cat_id'] ? " selected" : ""; ?>><?php echo $ls['cat_name']; ?></option>
+          <?php } ?>
+        </select>
+      </td>
+    </tr>
+
     <tr>
       <th>SLUG</th>
-      <td><input type="text" name="slug" value="<?php echo $row1['slug']; ?>"></td>
+      <td><input type="text" name="post_slug" value="<?php echo $row['post_slug']; ?>" required=""></td>
     </tr>
+
     <tr>
       <th>JUDUL</th>
-      <td><input type="text" name="title" value="<?php echo $row1['title']; ?>"></td>
+      <td><input type="text" name="post_tittle" value="<?php echo $row['post_tittle']; ?>" required=""></td>
     </tr>
-     <tr>
+
+    <tr>
       <th>KETERANGAN</th>
-      <td><input type="text" name="keterangan" value="<?php echo $row1['keterangan']; ?>"></td>
+      <td><input type="text" name="post_text" value="<?php echo $row['post_text']; ?>" required=""></td>
     </tr>
-		<tr>
-			<th></th>
-			<td><input type="submit" name="tsimpan" value="UBAH">   <input type="submit" name="thapus" value="HAPUS"></td>
-		</tr>
-	</table>
+
+    <tr>
+      <td></td>
+      <td><input class="tmbl" type="submit" name="btn-update" value="UPDATE"></td>
+    </tr>
+  </table>
+</form>
