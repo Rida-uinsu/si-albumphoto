@@ -1,20 +1,14 @@
 {
-    "name": "acer/utsafridayani",
-    "description": "Program Latihan Pemrograman Berbasis Web Lanjutan Prodi Sistem Informasi Sumatera Utara Medan",
+    "name": "acer/tugas-1-blog",
+    "description": "Praktikum Web Lanjutan",
     "type": "project",
     "require": {
         "php": "^7.4"
     },
     "authors": [
         {
-            "name": "Afridayani",
+            "name": "Rida",
             "email": "afridayani55@gmail.com"
         }
-    ],
-
-    "autoload" : {
-        "psr-4" : {
-            "App\\" : "app/"
-        }
-    }
+    ]
 }

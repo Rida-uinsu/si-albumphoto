@@ -1,16 +1,11 @@
 <?php 
 require_once "app/album.php";
-
 $id = $_GET['id'];
-
 $alb = new App\Album();
 $row = $alb->edit($id);
 $lst = $alb->listPhotos();
-
 ?>
-
-<h2>EDIT ALBUM</h2>
-
+<h2><center>EDIT ALBUM</h2></center>
 <form method="POST" action="album_proses.php">
 	<input type="hidden" name="album_id" value="<?php echo $id; ?>">
 	<table>
@@ -33,8 +28,6 @@ $lst = $alb->listPhotos();
 			<th>KETERANGAN</th>
 			<td><input type="text" name="album_text" value="<?php echo $row['album_text']; ?>" required=""></td>
 		</tr>
-
-
 		<tr>
 			<td></td>
 			<td><input class="tmbl" type="submit" name="btn-update" value="UPDATE"></td>

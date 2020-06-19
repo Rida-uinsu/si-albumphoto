@@ -8,8 +8,7 @@ $cat = new App\Category();
 $row = $cat->edit($id);
 ?>
 
-<h2>EDIT KATEGORI</h2>
-
+<center><h2>EDIT KATEGORI</h2></center>
 <form method="POST" action="category_proses.php">
   <input type="hidden" name="cat_id" value="<?php echo $id; ?>">
   <table>

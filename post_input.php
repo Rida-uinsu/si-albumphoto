@@ -1,13 +1,9 @@
 <?php 
-
 require_once "app/post.php";
-
 $pst = new App\Post();
 $lst = $pst->listCategory();
 ?>
-
-<h2>TAMBAH POST</h2>
-
+<center><h2>TAMBAH POST</h2></center>
 <form method="POST" action="post_proses.php">
   <table>
     <tr>
@@ -23,23 +19,18 @@ $lst = $pst->listCategory();
           <?php } ?>
         </select>
       </td>
-
     <tr>
       <th>SLUG</th>
       <td><input type="text" name="post_slug" required=""></td>
     </tr>
-
     <tr>
       <th>JUDUL</th>
       <td><input type="text" name="post_tittle" required=""></td>
     </tr>
-
     <tr>
       <th>KETERANGAN</th>
       <td><input type="text" name="post_text" required=""></td>
     </tr>
-
-    
     <tr>
       <td></td>
       <td><input type="submit" class="tmbl" name="btn-simpan" value="SIMPAN"></td>

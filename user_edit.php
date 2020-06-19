@@ -8,7 +8,7 @@ $user = new App\User();
 $row = $user->edit($id);
 ?>
 
-<h2>EDIT USER</h2>
+<center><h2>EDIT USER</h2></center>
 
 <form method="POST" action="user_proses.php">
 	<input type="hidden" name="user_id" value="<?php echo $id; ?>">

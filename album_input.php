@@ -1,12 +1,9 @@
 <?php 
-
 require_once "app/album.php";
-
 $alb = new App\Album();
 $lst = $alb->listPhotos();
 ?>
-
-<h2>TAMBAH ALBUM</h2>
+<h2><center>TAMBAH ALBUM</h2></center>
 
 <form method="POST" action="album_proses.php">
 	<table>
@@ -28,8 +25,6 @@ $lst = $alb->listPhotos();
 			<th>KETERANGAN</th>
 			<td><input type="text" name="album_text" required=""></td>
 		</tr>
-
-		
 		<tr>
 			<td></td>
 			<td><input type="submit" class="tmbl" name="btn-simpan" value="SIMPAN"></td>

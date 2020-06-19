@@ -1,4 +1,4 @@
-<h2>SILAHKAN LOGIN</h2>
+<center><h2>SILAHKAN LOGIN</h2></center>
 
 <?php 
 

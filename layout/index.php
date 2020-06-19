@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tugas By Raihan Alya Shafira</title>
+	<title>Tugas By Afridayani</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo ASSET; ?>css/style.css">
-	<link href="<?php echo ASSET; ?>images/icon.ico" rel="shortcut icon">
+	<link href="<?php echo ASSET; ?>images/haul.ico" rel="shortcut icon">
 </head>
 <body>
 	<div class="container">
 		<div class="header">
-			<img src="<?php echo ASSET;?>images/background2.png">
+			<img src="<?php echo ASSET;?>images/rdcantik.jpeg">
 		</div>
 
 		<div class="menu">
-			<a href="index.php">Home</a>
-			<a href="index.php?page=index_post">Post</a>
-			<a href="index.php?page=index_login">Login</a>
+			<a href="index.php">HOME</a>
+			<a href="index.php?page=index_post">POST</a>
+			<a href="index.php?page=index_login">LOGIN</a>
 		</div>
 
 		<div class="main">
@@ -32,7 +32,7 @@
 		</div>
 
 		<div class="footer">
-			Copyright 2020 &copy; Programmed By Raihan Alya Shafira 
+			Copyright 2020 &copy; Programmed By AFRIDAYANI
 		</div>
 	</div>
 </body>

@@ -1,6 +1,4 @@
-
-
-<h2>INPUT KATEGORI</h2>
+<center><h2>INPUT KATEGORI</h2></center>
 
 <form method="POST" action="category_proses.php">
 	<table>

@@ -1,5 +1,5 @@
 
-<h2>DATA KATEGORI</h2>
+<center><h2>DATA KATEGORI</h2></center>
 
 <?php 
 require_once "app/category.php";
@@ -12,21 +12,21 @@ $rows = $cat->tampil();
 
 <table>
 	<tr>
-		<th>NO</th>
-		<th>NAMA</th>
-		<th>KETERANGAN</th>
-		<th>EDIT</th>
+		<th><center>NO</th></center>
+		<th><center>NAMA</th></center>
+		<th><center>KETERANGAN</th></center>
+		<th><center>EDIT</th></center>
 	</tr>
 	<?php $no=0; foreach ($rows as $row) { $no++;?>
 		<tr>
-			<td><?php echo $row['cat_id']; ?></td>
-			<td><?php echo $row['cat_name']; ?></td>
-			<td><?php echo $row['cat_text']; ?></td>
-			<td><a href="dashboard.php?page=category_edit&id=<?php echo $row['cat_id']; ?>" class="btn">Edit</a></td>
+			<td><center><?php echo $row['cat_id']; ?></td></center>
+			<td><center><?php echo $row['cat_name']; ?></td></center>
+			<td><center><?php echo $row['cat_text']; ?></td></center>
+			<td><center><a href="dashboard.php?page=category_edit&id=<?php echo $row['cat_id']; ?>" class="btn">Edit</a></td></center>
 		</tr>
 	<?php } ?>
 </table>
 
 <div>
-	<a href="dashboard.php?page=category_input" class="btn">Tambah</a>
+	<center><a href="dashboard.php?page=category_input" class="btn">Tambah</a></center>
 	</div>

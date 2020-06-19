@@ -1,1 +1,1 @@
-<h1>DASHBOARD</h1>
+<marquee><h1>SELAMAT DATANG</h1></marquee>

@@ -1,12 +1,10 @@
-
-|
 .utama {
 	width: 1020px;
+	height: 1500px;
 	margin: auto;
-	border: 1px solid gray;
-	background-color: white;
-	font-family: century gothic;
-	padding: 10px;
+	border: 2px solid chocolate;
+	border-height: 1;
+	background-color: #F5F5F5;
 	background: #fff;
 }
 
@@ -33,31 +31,29 @@ th {
 
 h1 {
 	margin: auto;
-	color: salmon;
+	color: #DC143C;
 	margin-bottom: 10px;
 	font-size: 50px;
 	margin-top: 40px;
-	font-family: century gothic;
+
 }
 
 h2 {
 	margin: auto;
-	color: salmon;
+	color: #DC143C;
 	margin-bottom: 10px;
 	font-size: 30px;
-	font-family: century gothic;
+	
 }
 
 .menu  {
-	
 	padding: 10px;
-	background-color: salmon;
-	color: white;
+	background-color: #F08080;
+	color: #fff;
 	text-decoration: none;
 	top: 0px;
 	position: sticky;
 	margin-bottom: 20px;
-	font-family: century gothic;
 	text-align: left;
 }
 
@@ -65,9 +61,10 @@ h2 {
 	padding: 10px;
 	color:white;
 	text-decoration: none;
+	background-color: #F08080;
 }
 .menu a:hover {
-	background-color: white ;
+	background-color: #FFB6C1 ;
 	color: salmon;
 
 }
@@ -96,45 +93,39 @@ h2 {
 .user_input {
 	background-color: indianred;
 	color: white;
-	font-family: century gothic;
 }
 
 
 table {
-	
-	font-size: 15px;
 	margin-top: 10px;
+	margin-left: 60px;
+	margin-right: 30px;
 	margin-bottom: 10px;
-	border: 1px solid none;
+	border: 1px solid #F08080;
 	border-collapse: collapse;
-	box-sizing : border-box;
-	text-align: center;
-	align-self: center;
-	background-color: seashell;
-	font-family: century gothic;
+	width: 900px;
+	position: center;
 }
 
 table th {
-	text-align: center;
-	border: 1px solid lightgray;
+	text-align: left;
+	width: 300px;
+	border: 2px solid chocolate;
 	padding: 10px;
-	background-color: salmon;
+	background-color: #F08080;
 	color: #ffffff;
-	font-family: century gothic;
 }
 
 table td {
-	border: 1px solid lightgray;
+	border: 2px solid chocolate;
+	background-color: #FFF8DC;
 	padding:10px;
-
 }
 
-
-
 .footer {
-
+	padding: 20px;
 	padding: 10px;
-	background-color: salmon;
+	background-color: #F08080;
 	bottom: 0px;
 	color: white;
 	position: sticky;
@@ -146,7 +137,6 @@ table td {
 .tmbl {
 	background-color: salmon;
 	color: white;
-	font-family: century gothic;
 }
 
 .tmbl_ker{

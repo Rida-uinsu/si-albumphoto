@@ -1,5 +1,4 @@
-<h2>TAMBAH USER</h2>
-
+<center><h2>TAMBAH USER</h2></center>
 <form method="POST" action="user_proses.php">
 	<table>
 		<tr>

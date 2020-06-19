@@ -1,16 +1,11 @@
 <?php 
 require_once "app/photo.php";
-
 $id = $_GET['id'];
-
 $pho = new App\Photos();
 $row = $pho->edit($id);
 $lst = $pho->listPost();
-
 ?>
-
-<h2>EDIT PHOTO</h2>
-
+<center><h2>EDIT PHOTO</h2></center>
 <form method="POST" action="photo_proses.php">
 	<input type="hidden" name="pho_id" value="<?php echo $id; ?>">
 	<table>
@@ -28,17 +23,14 @@ $lst = $pho->listPost();
 				</select>
 			</td>
 		</tr>
-
 		<tr>
-			<th>TITTLE</th>
+			<th>JUDUL</th>
 			<td><input type="text" name="pho_tittle" value="<?php echo $row['pho_tittle']; ?>" required=""></td>
 		</tr>
-
 		<tr>
 			<th>KETERANGN</th>
 			<td><input type="text" name="pho_text" value="<?php echo $row['pho_text']; ?>" required=""></td>
 		</tr>
-
 		<tr>
 			<td></td>
 			<td><input class="tmbl" type="submit" name="btn-update" value="UPDATE"></td>
